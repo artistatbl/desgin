@@ -5,6 +5,7 @@ import { useState } from "react"
 import { ThresholdNoiseCard } from "@/components/threshold-noise-card"
 import { BatteryStatusShowcase } from "@/components/battery-status-showcase"
 import { MemoriesBlackSeaCard } from "@/components/memories-black-sea-card"
+import { XcodeAssistantCard } from "@/components/xcode-assistant-card"
 import { Button } from "@/components/ui/button"
 
 function ChevronLeftIcon() {
@@ -53,6 +54,12 @@ const galleryItems = [
     label: "Memories Black Sea card",
     note: "Poster-style travel memory card with warm cinematic scenery.",
     component: <MemoriesBlackSeaCard />,
+  },
+  {
+    id: "xcode-assistant",
+    label: "Xcode assistant composer",
+    note: "Rounded assistant composer with action icons and a floating send button.",
+    component: <XcodeAssistantCard />,
   },
 ]
 
