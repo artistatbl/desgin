@@ -1,6 +1,9 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 
+const SQUARE_DOT_PATTERN =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' viewBox='0 0 9 9'%3E%3Crect x='1' y='1' width='2' height='2' fill='%23fff' fill-opacity='.1'/%3E%3C/svg%3E\")"
+
 function SignalIcon() {
   return (
     <svg
@@ -82,8 +85,7 @@ export function ThresholdNoiseCard() {
               aria-hidden="true"
               className="pointer-events-none absolute inset-x-0 top-0 bottom-[2px] opacity-55"
               style={{
-                backgroundImage:
-                  "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1.05px, transparent 0)",
+                backgroundImage: SQUARE_DOT_PATTERN,
                 backgroundSize: "9px 9px",
               }}
             />
