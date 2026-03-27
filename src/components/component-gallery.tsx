@@ -4,6 +4,7 @@ import { useState } from "react"
 
 import { ThresholdNoiseCard } from "@/components/threshold-noise-card"
 import { BatteryStatusShowcase } from "@/components/battery-status-showcase"
+import { MemoriesBlackSeaCard } from "@/components/memories-black-sea-card"
 import { Button } from "@/components/ui/button"
 
 function ChevronLeftIcon() {
@@ -46,6 +47,12 @@ const galleryItems = [
     label: "Battery charging status",
     note: "Status bars for charging and fully charged states.",
     component: <BatteryStatusShowcase />,
+  },
+  {
+    id: "memories-black-sea",
+    label: "Memories Black Sea card",
+    note: "Poster-style travel memory card with warm cinematic scenery.",
+    component: <MemoriesBlackSeaCard />,
   },
 ]
 
