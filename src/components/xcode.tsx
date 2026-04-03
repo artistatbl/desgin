@@ -56,7 +56,7 @@ function ArrowUpIcon() {
   )
 }
 
-export function XcodeAssistantCard() {
+export function Xcode() {
   return (
     <div className="relative flex w-full max-w-[620px] items-center justify-center py-3">
       <div className="absolute left-10 top-3 h-32 w-44 rounded-full bg-[#7e8cff]/35 blur-[72px]" />

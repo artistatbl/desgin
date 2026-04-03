@@ -55,7 +55,7 @@ function MenuDots() {
   )
 }
 
-export function ThresholdNoiseCard() {
+export function Threshold() {
   return (
     <Card className="w-full max-w-[560px] gap-0 rounded-[18px] border border-[#343434] bg-[#050505] py-0 text-white ring-1 ring-[#1E1E1E] shadow-[0_10px_28px_rgba(0,0,0,0.18)]">
       <CardContent className="px-4 pt-4 pb-0 sm:px-[18px] sm:pt-[18px]">

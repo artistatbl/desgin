@@ -126,7 +126,7 @@ function BatteryStatusCard({
   )
 }
 
-export function BatteryStatusShowcase() {
+export function Battery() {
   return (
     <div className="w-full max-w-[560px] space-y-4 sm:space-y-5">
       {batteryStatusCards.map((card) => (

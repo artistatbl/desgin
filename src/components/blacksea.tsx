@@ -18,7 +18,7 @@ function MountainShape({
   )
 }
 
-export function MemoriesBlackSeaCard() {
+export function BlackSea() {
   return (
     <div className="w-[340px] overflow-hidden rounded-[34px] bg-black p-2.5 shadow-[0_18px_50px_rgba(0,0,0,0.18)]">
       <div className="overflow-hidden rounded-[28px] bg-black">

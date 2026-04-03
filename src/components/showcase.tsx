@@ -3,10 +3,10 @@
 import type { ReactElement } from "react"
 import { useState } from "react"
 
-import { BatteryStatusShowcase } from "@/components/battery-status-showcase"
-import { MemoriesBlackSeaCard } from "@/components/memories-black-sea-card"
-import { ThresholdNoiseCard } from "@/components/threshold-noise-card"
-import { XcodeAssistantCard } from "@/components/xcode-assistant-card"
+import { Battery } from "@/components/battery"
+import { BlackSea } from "@/components/blacksea"
+import { Threshold } from "@/components/threshold"
+import { Xcode } from "@/components/xcode"
 import { Button } from "@/components/ui/button"
 
 function ChevronLeftIcon() {
@@ -37,45 +37,45 @@ function ChevronRightIcon() {
   )
 }
 
-type GalleryItem = {
+type ShowcaseItem = {
   id: string
   label: string
   note: string
   component: ReactElement
 }
 
-const galleryItems: [GalleryItem, ...GalleryItem[]] = [
+const showcaseItems: [ShowcaseItem, ...ShowcaseItem[]] = [
   {
     id: "threshold-noise",
-    label: "Threshold noise card",
+    label: "Threshold Noise",
     note: "Step-based control with signal and noise ratio styling.",
-    component: <ThresholdNoiseCard />,
+    component: <Threshold />,
   },
   {
     id: "battery-status",
-    label: "Battery charging status",
+    label: "Battery Status",
     note: "Status bars for charging and fully charged states.",
-    component: <BatteryStatusShowcase />,
+    component: <Battery />,
   },
   {
     id: "memories-black-sea",
-    label: "Memories Black Sea card",
+    label: "Black Sea",
     note: "Poster-style travel memory card with warm cinematic scenery.",
-    component: <MemoriesBlackSeaCard />,
+    component: <BlackSea />,
   },
   {
     id: "xcode-assistant",
-    label: "Xcode assistant composer",
+    label: "Xcode Assistant",
     note: "Rounded assistant composer with action icons and a floating send button.",
-    component: <XcodeAssistantCard />,
+    component: <Xcode />,
   },
 ]
 
-export function ComponentGallery() {
+export function Showcase() {
   const [activeIndex, setActiveIndex] = useState(0)
-  const activeItem = galleryItems[activeIndex] ?? galleryItems[0]
+  const activeItem = showcaseItems[activeIndex] ?? showcaseItems[0]
   const isFirstItem = activeIndex === 0
-  const isLastItem = activeIndex === galleryItems.length - 1
+  const isLastItem = activeIndex === showcaseItems.length - 1
 
   const showPreviousItem = () => {
     setActiveIndex((currentIndex) => Math.max(currentIndex - 1, 0))
@@ -83,7 +83,7 @@ export function ComponentGallery() {
 
   const showNextItem = () => {
     setActiveIndex((currentIndex) =>
-      Math.min(currentIndex + 1, galleryItems.length - 1)
+      Math.min(currentIndex + 1, showcaseItems.length - 1)
     )
   }
 
@@ -92,7 +92,7 @@ export function ComponentGallery() {
       <div className="flex h-[120px] flex-col justify-between gap-5 sm:flex-row sm:items-end">
         <div className="space-y-1.5">
           <p className="text-[0.78rem] font-medium tracking-[0.22em] text-black/35 uppercase">
-            Component gallery
+            Showcase
           </p>
           <div className="space-y-0.5">
             <h1 className="text-[2rem] font-medium tracking-[-0.065em] text-[#161616] sm:text-[2.6rem]">
@@ -106,7 +106,7 @@ export function ComponentGallery() {
 
         <div className="flex items-center gap-4 self-start pb-1 text-black/40 sm:self-auto">
           <div className="text-[0.78rem] font-medium tracking-[0.18em] uppercase">
-            {String(activeIndex + 1).padStart(2, "0")} / {String(galleryItems.length).padStart(2, "0")}
+            {String(activeIndex + 1).padStart(2, "0")} / {String(showcaseItems.length).padStart(2, "0")}
           </div>
           <div className="flex items-center gap-2">
             <Button
