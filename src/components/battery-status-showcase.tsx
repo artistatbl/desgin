@@ -65,6 +65,27 @@ type BatteryStatusCardProps = {
   statusIcon: ReactNode
 }
 
+const batteryStatusCards: BatteryStatusCardProps[] = [
+  {
+    percent: "46.2%",
+    status: "Charging",
+    metaLabel: "Est. end in",
+    metaValue: "~25 mins",
+    progress: "48%",
+    progressClassName: "bg-[linear-gradient(90deg,#16d878_0%,#18ea8a_100%)]",
+    statusIcon: <ChargingIcon />,
+  },
+  {
+    percent: "82.6%",
+    status: "Charged",
+    metaLabel: "Charged in",
+    metaValue: "42 mins",
+    progress: "81%",
+    progressClassName: "bg-[linear-gradient(90deg,#9E9E9C_0%,#A5A5A3_100%)]",
+    statusIcon: <CheckIcon />,
+  },
+]
+
 function BatteryStatusCard({
   percent,
   status,
@@ -108,24 +129,18 @@ function BatteryStatusCard({
 export function BatteryStatusShowcase() {
   return (
     <div className="w-full max-w-[560px] space-y-4 sm:space-y-5">
-      <BatteryStatusCard
-        percent="46.2%"
-        status="Charging"
-        metaLabel="Est. end in"
-        metaValue="~25 mins"
-        progress="48%"
-        progressClassName="bg-[linear-gradient(90deg,#16d878_0%,#18ea8a_100%)]"
-        statusIcon={<ChargingIcon />}
-      />
-      <BatteryStatusCard
-        percent="82.6%"
-        status="Charged"
-        metaLabel="Charged in"
-        metaValue="42 mins"
-        progress="81%"
-        progressClassName="bg-[linear-gradient(90deg,#9E9E9C_0%,#A5A5A3_100%)]"
-        statusIcon={<CheckIcon />}
-      />
+      {batteryStatusCards.map((card) => (
+        <BatteryStatusCard
+          key={`${card.status}-${card.percent}`}
+          percent={card.percent}
+          status={card.status}
+          metaLabel={card.metaLabel}
+          metaValue={card.metaValue}
+          progress={card.progress}
+          progressClassName={card.progressClassName}
+          statusIcon={card.statusIcon}
+        />
+      ))}
     </div>
   )
 }

@@ -1,15 +1,20 @@
 import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+
+import { cn } from "@/lib/utils"
+
 import { Providers } from "./components/providers"
 
 import "./globals.css"
-import { Inter } from "next/font/google";
-import { cn } from "@/lib/utils";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
 
 export const metadata: Metadata = {
-  title: "JStack App",
-  description: "Created using JStack",
+  title: "Design Gallery",
+  description: "A small gallery of polished UI component studies.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 }
 

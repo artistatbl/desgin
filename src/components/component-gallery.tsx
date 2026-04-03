@@ -1,10 +1,11 @@
 "use client"
 
+import type { ReactElement } from "react"
 import { useState } from "react"
 
-import { ThresholdNoiseCard } from "@/components/threshold-noise-card"
 import { BatteryStatusShowcase } from "@/components/battery-status-showcase"
 import { MemoriesBlackSeaCard } from "@/components/memories-black-sea-card"
+import { ThresholdNoiseCard } from "@/components/threshold-noise-card"
 import { XcodeAssistantCard } from "@/components/xcode-assistant-card"
 import { Button } from "@/components/ui/button"
 
@@ -36,7 +37,14 @@ function ChevronRightIcon() {
   )
 }
 
-const galleryItems = [
+type GalleryItem = {
+  id: string
+  label: string
+  note: string
+  component: ReactElement
+}
+
+const galleryItems: [GalleryItem, ...GalleryItem[]] = [
   {
     id: "threshold-noise",
     label: "Threshold noise card",
@@ -65,7 +73,19 @@ const galleryItems = [
 
 export function ComponentGallery() {
   const [activeIndex, setActiveIndex] = useState(0)
-  const activeItem = galleryItems[activeIndex] ?? galleryItems[0]!
+  const activeItem = galleryItems[activeIndex] ?? galleryItems[0]
+  const isFirstItem = activeIndex === 0
+  const isLastItem = activeIndex === galleryItems.length - 1
+
+  const showPreviousItem = () => {
+    setActiveIndex((currentIndex) => Math.max(currentIndex - 1, 0))
+  }
+
+  const showNextItem = () => {
+    setActiveIndex((currentIndex) =>
+      Math.min(currentIndex + 1, galleryItems.length - 1)
+    )
+  }
 
   return (
     <section className="w-full max-w-[1040px] sm:h-[620px] xl:w-[1040px]">
@@ -95,8 +115,8 @@ export function ComponentGallery() {
               size="icon"
               className="size-8 rounded-full text-black/55 hover:bg-black/5 hover:text-black"
               aria-label="View previous component"
-              disabled={activeIndex === 0}
-              onClick={() => setActiveIndex((index) => index - 1)}
+              disabled={isFirstItem}
+              onClick={showPreviousItem}
             >
               <ChevronLeftIcon />
             </Button>
@@ -106,8 +126,8 @@ export function ComponentGallery() {
               size="icon"
               className="size-8 rounded-full text-black/55 hover:bg-black/5 hover:text-black"
               aria-label="View next component"
-              disabled={activeIndex === galleryItems.length - 1}
-              onClick={() => setActiveIndex((index) => index + 1)}
+              disabled={isLastItem}
+              onClick={showNextItem}
             >
               <ChevronRightIcon />
             </Button>
