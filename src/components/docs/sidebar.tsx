@@ -13,8 +13,8 @@ export function Sidebar({
   onSelect,
 }: SidebarProps) {
   return (
-    <aside className="hidden h-full py-8 pr-6 lg:block">
-      <div className="space-y-7">
+    <aside className="hidden h-full overflow-y-auto py-8 pr-6 lg:block">
+      <div className="space-y-7 pb-8">
         <div className="space-y-3">
           <p className="text-[0.74rem] font-medium tracking-[0.2em] text-showcase-muted uppercase">
             Sections

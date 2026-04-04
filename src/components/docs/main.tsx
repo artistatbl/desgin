@@ -148,8 +148,8 @@ export function Main({
   isLastItem,
 }: MainProps) {
   return (
-    <main className="flex h-full min-w-0 flex-col overflow-hidden py-6 lg:px-8 xl:px-10">
-      <div className="mx-auto flex h-full w-full max-w-[780px] flex-col overflow-hidden">
+    <main className="h-full min-w-0 overflow-y-auto overflow-x-hidden py-6 lg:px-8 xl:px-10">
+      <div className="mx-auto flex min-h-full w-full max-w-[780px] flex-col pb-10">
         <div className="space-y-4">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div className="max-w-[540px] space-y-2">
@@ -211,7 +211,7 @@ export function Main({
           </div>
         </div>
 
-        <div className="mt-6 flex min-h-0 flex-1 flex-col gap-7 overflow-hidden">
+        <div className="mt-6 flex flex-col gap-7">
           <section id="preview" className="space-y-4">
             <div className="overflow-hidden rounded-md border border-border/70 bg-card shadow-sm">
               <div
