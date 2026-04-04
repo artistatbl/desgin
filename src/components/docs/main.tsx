@@ -224,12 +224,7 @@ export function Main({
 
         <div className="mt-6 flex min-h-0 flex-1 flex-col gap-7 overflow-hidden">
           <section id="preview" className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-6">
-                <SectionTab label="Radix UI" active />
-                <SectionTab label="Base UI" />
-              </div>
-
+            <div className="flex justify-end">
               <div className="text-muted-foreground">
                 <DotsIcon />
               </div>
