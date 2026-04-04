@@ -13,6 +13,7 @@ export type ShowcaseItem = {
   component: ReactElement
   exportName: string
   importPath: string
+  sourcePath: string
   previewClassName?: string
 }
 
@@ -24,6 +25,7 @@ export const showcaseItems: [ShowcaseItem, ...ShowcaseItem[]] = [
     component: <Trigger />,
     exportName: "Trigger",
     importPath: "@/components/trigger",
+    sourcePath: "src/components/trigger.tsx",
     previewClassName: "bg-muted/20",
   },
   {
@@ -33,6 +35,7 @@ export const showcaseItems: [ShowcaseItem, ...ShowcaseItem[]] = [
     component: <Threshold />,
     exportName: "Threshold",
     importPath: "@/components/threshold",
+    sourcePath: "src/components/threshold.tsx",
     previewClassName: "bg-muted/20",
   },
   {
@@ -42,6 +45,7 @@ export const showcaseItems: [ShowcaseItem, ...ShowcaseItem[]] = [
     component: <Battery />,
     exportName: "Battery",
     importPath: "@/components/battery",
+    sourcePath: "src/components/battery.tsx",
     previewClassName: "bg-muted/20",
   },
   {
@@ -51,6 +55,7 @@ export const showcaseItems: [ShowcaseItem, ...ShowcaseItem[]] = [
     component: <BlackSea />,
     exportName: "BlackSea",
     importPath: "@/components/blacksea",
+    sourcePath: "src/components/blacksea.tsx",
     previewClassName: "bg-muted/20",
   },
   {
@@ -60,6 +65,7 @@ export const showcaseItems: [ShowcaseItem, ...ShowcaseItem[]] = [
     component: <Xcode />,
     exportName: "Xcode",
     importPath: "@/components/xcode",
+    sourcePath: "src/components/xcode.tsx",
     previewClassName: "bg-muted/20",
   },
 ]
