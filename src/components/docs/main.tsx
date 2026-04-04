@@ -55,17 +55,6 @@ function CopyIcon() {
   )
 }
 
-function DotsIcon() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-4 w-4">
-      <circle cx="7" cy="7" r="1.2" fill="currentColor" />
-      <circle cx="13" cy="7" r="1.2" fill="currentColor" />
-      <circle cx="7" cy="13" r="1.2" fill="currentColor" />
-      <circle cx="13" cy="13" r="1.2" fill="currentColor" />
-    </svg>
-  )
-}
-
 function SectionTab({
   label,
   active = false,
@@ -224,12 +213,6 @@ export function Main({
 
         <div className="mt-6 flex min-h-0 flex-1 flex-col gap-7 overflow-hidden">
           <section id="preview" className="space-y-4">
-            <div className="flex justify-end">
-              <div className="text-muted-foreground">
-                <DotsIcon />
-              </div>
-            </div>
-
             <div className="overflow-hidden rounded-md border border-border/70 bg-card shadow-sm">
               <div
                 className={cn(
