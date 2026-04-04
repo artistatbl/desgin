@@ -9,7 +9,6 @@ import { Trigger } from "@/components/trigger"
 import { Threshold } from "@/components/threshold"
 import { Xcode } from "@/components/xcode"
 import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
 
 function ChevronLeftIcon() {
   return (
@@ -44,17 +43,14 @@ type ShowcaseItem = {
   label: string
   note: string
   component: ReactElement
-  panelClassName?: string
 }
 
 const showcaseItems: [ShowcaseItem, ...ShowcaseItem[]] = [
   {
     id: "trigger-action",
     label: "Trigger Action",
-    note: "Automation trigger card with a glowing state bar and dotted neon stage.",
+    note: "Automation trigger card with a glowing state bar and compact action row.",
     component: <Trigger />,
-    panelClassName:
-      "bg-[linear-gradient(180deg,#111017_0%,#0a0910_100%)] shadow-[0_24px_90px_rgba(0,0,0,0.28)]",
   },
   {
     id: "threshold-noise",
@@ -146,12 +142,7 @@ export function Showcase() {
         </div>
       </div>
 
-      <div
-        className={cn(
-          "flex h-[460px] items-start justify-center rounded-[32px] bg-[#f8f8f6] px-4 pt-10 shadow-[0_18px_70px_rgba(0,0,0,0.05)] sm:px-8 sm:pt-12",
-          activeItem.panelClassName
-        )}
-      >
+      <div className="flex h-[460px] items-start justify-center rounded-[32px] bg-[#f8f8f6] px-4 pt-10 shadow-[0_18px_70px_rgba(0,0,0,0.05)] sm:px-8 sm:pt-12">
         {activeItem.component}
       </div>
     </section>

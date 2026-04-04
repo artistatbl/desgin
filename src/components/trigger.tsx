@@ -1,9 +1,3 @@
-const DOT_PATTERN = {
-  backgroundImage:
-    "radial-gradient(circle at center, rgba(134, 114, 255, 0.18) 1.05px, transparent 1.1px)",
-  backgroundSize: "14px 14px",
-}
-
 function BoltIcon() {
   return (
     <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-5 w-5">
@@ -140,10 +134,9 @@ const toolbarItems = [
 
 export function Trigger() {
   return (
-    <div className="relative w-full max-w-[780px] overflow-hidden rounded-[30px] bg-[#09090d] px-5 py-5 text-white sm:px-6 sm:py-6">
-      <div aria-hidden="true" className="absolute inset-0 opacity-75" style={DOT_PATTERN} />
-      <div aria-hidden="true" className="absolute left-20 top-10 h-44 w-56 rounded-full bg-[#7a3cff]/16 blur-[90px]" />
-      <div aria-hidden="true" className="absolute right-12 top-16 h-36 w-44 rounded-full bg-[#5330ff]/14 blur-[84px]" />
+    <div className="relative w-full max-w-[780px] px-2 pt-5 pb-2 text-white sm:px-4">
+      <div aria-hidden="true" className="absolute left-24 top-14 h-36 w-56 rounded-full bg-[#7a3cff]/12 blur-[82px]" />
+      <div aria-hidden="true" className="absolute top-[72px] right-[72px] h-32 w-44 rounded-full bg-[#5330ff]/10 blur-[74px]" />
 
       <div className="relative z-10 space-y-10">
         <div className="relative mx-auto w-full max-w-[700px] rounded-[28px] border border-[#5d2fff] bg-[linear-gradient(180deg,rgba(34,20,58,0.98)_0%,rgba(23,15,36,0.98)_100%)] p-[3px] shadow-[0_0_0_1px_rgba(145,94,255,0.4),0_0_28px_rgba(91,39,255,0.2)]">
@@ -178,7 +171,7 @@ export function Trigger() {
           </div>
         </div>
 
-        <div className="mx-auto flex w-full max-w-[770px] items-center overflow-hidden rounded-[24px] border border-white/6 bg-[linear-gradient(180deg,rgba(25,24,31,0.98)_0%,rgba(19,19,24,0.98)_100%)] text-[#d3d2da] shadow-[0_12px_36px_rgba(0,0,0,0.32),inset_0_1px_0_rgba(255,255,255,0.04)]">
+        <div className="mx-auto flex w-full max-w-[770px] items-center overflow-hidden rounded-[24px] border border-white/6 bg-[linear-gradient(180deg,rgba(25,24,31,0.98)_0%,rgba(19,19,24,0.98)_100%)] text-[#d3d2da] shadow-[0_12px_36px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.04)]">
           <button
             type="button"
             className="m-3 flex items-center gap-3 rounded-[18px] bg-[linear-gradient(180deg,#6d33ff_0%,#5b26ef_100%)] px-6 py-4 text-[1rem] font-medium tracking-[-0.03em] text-white shadow-[0_10px_28px_rgba(91,38,239,0.45),inset_0_1px_0_rgba(255,255,255,0.15)]"
