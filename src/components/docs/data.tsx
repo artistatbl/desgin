@@ -26,7 +26,7 @@ export const showcaseItems: [ShowcaseItem, ...ShowcaseItem[]] = [
     exportName: "Trigger",
     importPath: "@/components/trigger",
     previewClassName: "bg-showcase-panel",
-    sections: ["Preview", "Install", "Usage", "Notes"],
+    sections: ["Preview", "Installation", "Usage"],
   },
   {
     id: "threshold-noise",
@@ -36,7 +36,7 @@ export const showcaseItems: [ShowcaseItem, ...ShowcaseItem[]] = [
     exportName: "Threshold",
     importPath: "@/components/threshold",
     previewClassName: "bg-showcase-panel",
-    sections: ["Preview", "Install", "Usage", "Notes"],
+    sections: ["Preview", "Installation", "Usage"],
   },
   {
     id: "battery-status",
@@ -46,7 +46,7 @@ export const showcaseItems: [ShowcaseItem, ...ShowcaseItem[]] = [
     exportName: "Battery",
     importPath: "@/components/battery",
     previewClassName: "bg-showcase-panel",
-    sections: ["Preview", "Install", "Usage", "Notes"],
+    sections: ["Preview", "Installation", "Usage"],
   },
   {
     id: "memories-black-sea",
@@ -56,7 +56,7 @@ export const showcaseItems: [ShowcaseItem, ...ShowcaseItem[]] = [
     exportName: "BlackSea",
     importPath: "@/components/blacksea",
     previewClassName: "bg-showcase-panel",
-    sections: ["Preview", "Install", "Usage", "Notes"],
+    sections: ["Preview", "Installation", "Usage"],
   },
   {
     id: "xcode-assistant",
@@ -66,7 +66,7 @@ export const showcaseItems: [ShowcaseItem, ...ShowcaseItem[]] = [
     exportName: "Xcode",
     importPath: "@/components/xcode",
     previewClassName: "bg-showcase-panel",
-    sections: ["Preview", "Install", "Usage", "Notes"],
+    sections: ["Preview", "Installation", "Usage"],
   },
 ]
 
@@ -99,10 +99,24 @@ export const componentGroups = [
   "Chart",
 ] as const
 
-export function getInstallSnippet(item: ShowcaseItem) {
-  return `import { ${item.exportName} } from "${item.importPath}"`
+export function getPreviewSnippet(item: ShowcaseItem) {
+  return [
+    "import {",
+    `  ${item.exportName},`,
+    `} from "${item.importPath}"`,
+  ]
 }
 
 export function getUsageSnippet(item: ShowcaseItem) {
-  return `<${item.exportName} />`
+  return [
+    `import { ${item.exportName} } from "${item.importPath}"`,
+    "",
+    "export function Demo() {",
+    `  return <${item.exportName} />`,
+    "}",
+  ]
+}
+
+export function getInstallCommand() {
+  return "bun add @base-ui/react class-variance-authority clsx tailwind-merge"
 }

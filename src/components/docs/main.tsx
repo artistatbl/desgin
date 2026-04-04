@@ -2,7 +2,12 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 import type { ShowcaseItem } from "./data"
-import { getInstallSnippet, getUsageSnippet, showcaseItems } from "./data"
+import {
+  getInstallCommand,
+  getPreviewSnippet,
+  getUsageSnippet,
+  showcaseItems,
+} from "./data"
 
 function ChevronLeftIcon() {
   return (
@@ -50,12 +55,87 @@ function CopyIcon() {
   )
 }
 
-function CodeIcon() {
+function DotsIcon() {
   return (
     <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-4 w-4">
-      <path d="M7.25 6L3.75 10L7.25 14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M12.75 6L16.25 10L12.75 14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="7" cy="7" r="1.2" fill="currentColor" />
+      <circle cx="13" cy="7" r="1.2" fill="currentColor" />
+      <circle cx="7" cy="13" r="1.2" fill="currentColor" />
+      <circle cx="13" cy="13" r="1.2" fill="currentColor" />
     </svg>
+  )
+}
+
+function SectionTab({
+  label,
+  active = false,
+}: {
+  label: string
+  active?: boolean
+}) {
+  return (
+    <button
+      type="button"
+      className={cn(
+        "border-b-2 px-0 pb-2 text-[0.92rem] font-medium transition-colors",
+        active
+          ? "border-foreground text-foreground"
+          : "border-transparent text-muted-foreground hover:text-foreground"
+      )}
+    >
+      {label}
+    </button>
+  )
+}
+
+function PackagePill({
+  label,
+  active = false,
+}: {
+  label: string
+  active?: boolean
+}) {
+  return (
+    <span
+      className={cn(
+        "inline-flex h-6 items-center rounded-md px-2.5 text-[0.74rem] font-medium",
+        active
+          ? "bg-foreground text-background"
+          : "bg-muted text-muted-foreground"
+      )}
+    >
+      {label}
+    </span>
+  )
+}
+
+function CodeSnippet({
+  lines,
+  compact = false,
+}: {
+  lines: string[]
+  compact?: boolean
+}) {
+  return (
+    <div className={cn("space-y-1 font-mono", compact ? "text-[0.76rem]" : "text-[0.8rem]")}>
+      {lines.map((line, index) => (
+        <div key={`${index}-${line}`} className="grid grid-cols-[20px_minmax(0,1fr)] gap-3">
+          <span className="text-[0.72rem] text-muted-foreground/80">{index + 1}</span>
+          <code
+            className={cn(
+              "min-w-0 whitespace-pre-wrap break-all",
+              line.startsWith("import")
+                ? "text-[#d66e6e]"
+                : line.includes("return")
+                  ? "text-[#6373c9]"
+                  : "text-muted-foreground"
+            )}
+          >
+            {line || " "}
+          </code>
+        </div>
+      ))}
+    </div>
   )
 }
 
@@ -80,21 +160,16 @@ export function Main({
 }: MainProps) {
   return (
     <main className="flex h-full min-w-0 flex-col overflow-hidden py-6 lg:px-8 xl:px-10">
-      <div className="mx-auto flex h-full w-full max-w-[760px] flex-col overflow-hidden">
+      <div className="mx-auto flex h-full w-full max-w-[780px] flex-col overflow-hidden">
         <div className="space-y-4">
           <div className="flex flex-wrap items-start justify-between gap-4">
-            <div className="space-y-2">
-              <p className="text-[0.74rem] font-medium tracking-[0.2em] text-showcase-muted uppercase">
-                Components
+            <div className="max-w-[540px] space-y-2">
+              <h1 className="text-[2.35rem] font-semibold tracking-[-0.08em] text-showcase-title sm:text-[2.8rem]">
+                {activeItem.label}
+              </h1>
+              <p className="text-[1rem] leading-7 text-showcase-muted">
+                {activeItem.note}
               </p>
-              <div className="space-y-1">
-                <h1 className="text-[2.1rem] font-semibold tracking-[-0.07em] text-showcase-title sm:text-[2.5rem]">
-                  {activeItem.label}
-                </h1>
-                <p className="max-w-2xl text-[0.98rem] leading-7 text-showcase-muted">
-                  {activeItem.note}
-                </p>
-              </div>
             </div>
 
             <div className="flex items-center gap-2">
@@ -104,7 +179,7 @@ export function Main({
                 className="h-9 rounded-md px-3 text-[0.82rem] font-medium text-muted-foreground"
               >
                 <CopyIcon />
-                Copy
+                Copy Page
               </Button>
               <Button
                 type="button"
@@ -147,53 +222,102 @@ export function Main({
           </div>
         </div>
 
-        <div className="mt-6 flex min-h-0 flex-1 flex-col gap-4">
-          <section id="preview" className="flex min-h-0 flex-col rounded-md bg-card p-4 shadow-sm">
-            <div
-              className={cn(
-                "flex min-h-0 flex-1 items-center justify-center rounded-md px-4 py-5",
-                activeItem.previewClassName
-              )}
-            >
-              {activeItem.component}
+        <div className="mt-6 flex min-h-0 flex-1 flex-col gap-7 overflow-hidden">
+          <section id="preview" className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-6">
+                <SectionTab label="Radix UI" active />
+                <SectionTab label="Base UI" />
+              </div>
+
+              <div className="text-muted-foreground">
+                <DotsIcon />
+              </div>
             </div>
 
-            <div className="mt-4 rounded-md bg-background px-4 py-3 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <CodeIcon />
-                <code>{`import { ${activeItem.exportName} } from "${activeItem.importPath}"`}</code>
+            <div className="overflow-hidden rounded-md border border-border/70 bg-card shadow-sm">
+              <div
+                className={cn(
+                  "flex min-h-[290px] items-center justify-center px-6 py-8",
+                  activeItem.previewClassName
+                )}
+              >
+                {activeItem.component}
+              </div>
+
+              <div className="relative border-t border-border/60 bg-muted/20 px-5 py-4">
+                <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="h-8 rounded-full px-4 text-[0.78rem] font-medium text-foreground shadow-sm"
+                  >
+                    View Code
+                  </Button>
+                </div>
+
+                <CodeSnippet lines={getPreviewSnippet(activeItem)} compact />
               </div>
             </div>
           </section>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            <section id="install" className="rounded-md bg-card p-4 shadow-sm">
-              <p className="text-xs font-semibold tracking-[0.18em] text-showcase-muted uppercase">
-                Install
-              </p>
-              <pre className="mt-3 overflow-x-auto rounded-md bg-background px-3 py-3 text-sm leading-6 text-muted-foreground">
-                <code>{getInstallSnippet(activeItem)}</code>
-              </pre>
-            </section>
+          <section id="installation" className="space-y-4">
+            <h2 className="text-[1.7rem] font-semibold tracking-[-0.05em] text-showcase-title">
+              Installation
+            </h2>
 
-            <section id="usage" className="rounded-md bg-card p-4 shadow-sm">
-              <p className="text-xs font-semibold tracking-[0.18em] text-showcase-muted uppercase">
-                Usage
-              </p>
-              <pre className="mt-3 overflow-x-auto rounded-md bg-background px-3 py-3 text-sm leading-6 text-muted-foreground">
-                <code>{getUsageSnippet(activeItem)}</code>
-              </pre>
-            </section>
+            <div className="flex items-center gap-6">
+              <SectionTab label="Command" active />
+              <SectionTab label="Manual" />
+            </div>
 
-            <section id="notes" className="rounded-md bg-card p-4 shadow-sm md:col-span-2">
-              <p className="text-xs font-semibold tracking-[0.18em] text-showcase-muted uppercase">
-                Notes
-              </p>
-              <p className="mt-3 text-sm leading-6 text-showcase-muted">
-                The page stays fixed to the viewport, the preview stays centered, and navigation is split into dedicated layout components for a cleaner codebase.
-              </p>
-            </section>
-          </div>
+            <div className="overflow-hidden rounded-md border border-border/70 bg-card shadow-sm">
+              <div className="flex items-center justify-between gap-3 border-b border-border/60 px-4 py-3">
+                <div className="flex flex-wrap items-center gap-2">
+                  <PackagePill label="pnpm" />
+                  <PackagePill label="npm" />
+                  <PackagePill label="yarn" />
+                  <PackagePill label="bun" active />
+                </div>
+
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon-sm"
+                  className="rounded-md text-muted-foreground"
+                >
+                  <CopyIcon />
+                </Button>
+              </div>
+
+              <pre className="overflow-x-auto px-4 py-4 font-mono text-[0.8rem] text-muted-foreground">
+                <code>{getInstallCommand()}</code>
+              </pre>
+            </div>
+          </section>
+
+          <section id="usage" className="space-y-4">
+            <h2 className="text-[1.7rem] font-semibold tracking-[-0.05em] text-showcase-title">
+              Usage
+            </h2>
+
+            <div className="overflow-hidden rounded-md border border-border/70 bg-card shadow-sm">
+              <div className="flex items-center justify-end px-4 py-3">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon-sm"
+                  className="rounded-md text-muted-foreground"
+                >
+                  <CopyIcon />
+                </Button>
+              </div>
+
+              <div className="border-t border-border/60 px-4 py-4">
+                <CodeSnippet lines={getUsageSnippet(activeItem)} />
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </main>
