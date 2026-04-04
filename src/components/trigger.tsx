@@ -1,3 +1,7 @@
+import type { ReactElement } from "react"
+
+import { Button } from "@/components/ui/button"
+
 function BoltIcon() {
   return (
     <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-5 w-5">
@@ -124,42 +128,48 @@ function CursorIcon() {
   )
 }
 
+type ToolbarItem = {
+  label: string
+  icon: ReactElement
+  iconOnly?: boolean
+}
+
 const toolbarItems = [
   { label: "Metrics", icon: <ChartIcon /> },
   { label: "Test", icon: <BranchIcon /> },
   { label: "", icon: <CopyIcon />, iconOnly: true },
   { label: "", icon: <CardIcon />, iconOnly: true },
   { label: "", icon: <DotsIcon />, iconOnly: true },
-]
+] satisfies readonly ToolbarItem[]
 
 export function Trigger() {
   return (
     <div className="relative w-full max-w-[620px] px-1 pt-4 pb-2 text-white sm:px-2">
-      <div aria-hidden="true" className="absolute left-18 top-12 h-28 w-44 rounded-full bg-[#7a3cff]/12 blur-[72px]" />
+      <div aria-hidden="true" className="absolute top-12 left-[72px] h-28 w-44 rounded-full bg-[#7a3cff]/12 blur-[72px]" />
       <div aria-hidden="true" className="absolute top-[64px] right-[56px] h-24 w-36 rounded-full bg-[#5330ff]/10 blur-[66px]" />
 
       <div className="relative z-10 space-y-6">
-        <div className="relative mx-auto w-full max-w-[560px] rounded-[24px] border border-[#5d2fff] bg-[linear-gradient(180deg,rgba(34,20,58,0.98)_0%,rgba(23,15,36,0.98)_100%)] p-[3px] shadow-[0_0_0_1px_rgba(145,94,255,0.4),0_0_24px_rgba(91,39,255,0.18)]">
+        <div className="relative mx-auto w-full max-w-[560px] rounded-[24px] border border-trigger-border bg-[linear-gradient(180deg,rgba(34,20,58,0.98)_0%,rgba(23,15,36,0.98)_100%)] p-[3px] shadow-[0_0_0_1px_rgba(145,94,255,0.4),0_0_24px_rgba(91,39,255,0.18)]">
           <div className="overflow-hidden rounded-[21px] border border-white/6 bg-[linear-gradient(180deg,rgba(39,22,66,0.98)_0%,rgba(26,17,42,0.98)_100%)]">
             <div className="flex items-center justify-between border-b border-white/5 px-4 py-3.5 sm:px-5">
-              <div className="flex items-center gap-3 text-[#c1a8ff]">
+              <div className="flex items-center gap-3 text-trigger-label">
                 <BoltIcon />
-                <span className="text-[1rem] font-medium tracking-[-0.03em] text-[#bca4ff] sm:text-[1.05rem]">
+                <span className="text-[1rem] font-medium tracking-[-0.03em] text-trigger-label sm:text-[1.05rem]">
                   Trigger Action
                 </span>
               </div>
 
-              <div className="rounded-full border border-[#6944ea] bg-[linear-gradient(180deg,#4d2bb5_0%,#3a2483_100%)] px-3.5 py-1.5 text-[0.82rem] font-semibold tracking-[0.12em] text-[#c6abff]">
+              <div className="rounded-full border border-trigger-border bg-[var(--trigger-chip)] px-3.5 py-1.5 text-[0.82rem] font-semibold tracking-[0.12em] text-trigger-chip-foreground">
                 IF
               </div>
             </div>
 
             <div className="p-3">
-              <div className="rounded-[18px] bg-[linear-gradient(180deg,#39206f_0%,#32205d_100%)] px-4 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:px-5">
+              <div className="rounded-[18px] bg-[var(--trigger-card)] px-4 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:px-5">
                 <h2 className="text-[1.02rem] font-semibold tracking-[-0.04em] text-white sm:text-[1.08rem]">
                   Signed Up
                 </h2>
-                <p className="mt-3 max-w-[410px] text-[0.92rem] leading-[1.35] tracking-[-0.03em] text-[#cdc2e9] sm:text-[0.96rem]">
+                <p className="mt-3 max-w-[410px] text-[0.92rem] leading-[1.35] tracking-[-0.03em] text-trigger-card-foreground sm:text-[0.96rem]">
                   Triggered when a new subscriber signs up for your newsletter
                 </p>
               </div>
@@ -171,30 +181,34 @@ export function Trigger() {
           </div>
         </div>
 
-        <div className="mx-auto flex w-full max-w-[560px] items-center overflow-hidden rounded-[20px] border border-white/6 bg-[linear-gradient(180deg,rgba(25,24,31,0.98)_0%,rgba(19,19,24,0.98)_100%)] text-[#d3d2da] shadow-[0_12px_32px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.04)]">
-          <button
+        <div className="mx-auto flex w-full max-w-[560px] items-center overflow-hidden rounded-[20px] border border-trigger-toolbar-border bg-[linear-gradient(180deg,rgba(25,24,31,0.98)_0%,rgba(19,19,24,0.98)_100%)] text-trigger-toolbar-foreground shadow-[0_12px_32px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.04)]">
+          <Button
             type="button"
-            className="m-2.5 flex items-center gap-2.5 rounded-[16px] bg-[linear-gradient(180deg,#6d33ff_0%,#5b26ef_100%)] px-4 py-3.5 text-[0.96rem] font-medium tracking-[-0.03em] text-white shadow-[0_10px_24px_rgba(91,38,239,0.45),inset_0_1px_0_rgba(255,255,255,0.15)]"
+            variant="trigger-primary"
+            size="trigger-primary"
+            className="m-2.5"
           >
             <PowerIcon />
             <span>Activated</span>
-          </button>
+          </Button>
 
           {toolbarItems.map((item, index) => (
             <div
               key={`${item.label}-${index}`}
-              className="flex items-center border-l border-white/6"
+              className="flex items-center border-l border-trigger-toolbar-border"
             >
-              <button
+              <Button
                 type="button"
-                className={`flex items-center gap-2.5 px-4 py-5 text-[0.92rem] font-medium tracking-[-0.03em] text-[#d3d2da] transition-colors hover:text-white ${
+                variant="trigger-toolbar"
+                size="trigger-toolbar"
+                className={`${
                   item.iconOnly ? "justify-center sm:min-w-[56px]" : "sm:min-w-[120px]"
                 }`}
                 aria-label={item.label || "Toolbar action"}
               >
-                <span className="text-[#c0becb]">{item.icon}</span>
+                <span className="text-trigger-toolbar-icon">{item.icon}</span>
                 {!item.iconOnly ? <span>{item.label}</span> : null}
-              </button>
+              </Button>
             </div>
           ))}
         </div>

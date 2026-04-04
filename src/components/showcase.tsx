@@ -98,20 +98,20 @@ export function Showcase() {
     <section className="w-full max-w-[1040px] sm:h-[620px] xl:w-[1040px]">
       <div className="flex h-[120px] flex-col justify-between gap-5 sm:flex-row sm:items-end">
         <div className="space-y-1.5">
-          <p className="text-[0.78rem] font-medium tracking-[0.22em] text-black/35 uppercase">
+          <p className="text-[0.78rem] font-medium tracking-[0.22em] text-showcase-muted uppercase">
             Showcase
           </p>
           <div className="space-y-0.5">
-            <h1 className="text-[2rem] font-medium tracking-[-0.065em] text-[#161616] sm:text-[2.6rem]">
+            <h1 className="text-[2rem] font-medium tracking-[-0.065em] text-showcase-title sm:text-[2.6rem]">
               {activeItem.label}
             </h1>
-            <p className="max-w-2xl text-sm text-black/45 sm:text-[0.95rem]">
+            <p className="max-w-2xl text-sm text-showcase-muted sm:text-[0.95rem]">
               {activeItem.note}
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-4 self-start pb-1 text-black/40 sm:self-auto">
+        <div className="flex items-center gap-4 self-start pb-1 text-showcase-muted sm:self-auto">
           <div className="text-[0.78rem] font-medium tracking-[0.18em] uppercase">
             {String(activeIndex + 1).padStart(2, "0")} / {String(showcaseItems.length).padStart(2, "0")}
           </div>
@@ -120,7 +120,7 @@ export function Showcase() {
               type="button"
               variant="ghost"
               size="icon"
-              className="size-8 rounded-full text-black/55 hover:bg-black/5 hover:text-black"
+              className="size-8 rounded-full text-showcase-muted hover:bg-muted hover:text-showcase-title"
               aria-label="View previous component"
               disabled={isFirstItem}
               onClick={showPreviousItem}
@@ -131,7 +131,7 @@ export function Showcase() {
               type="button"
               variant="ghost"
               size="icon"
-              className="size-8 rounded-full text-black/55 hover:bg-black/5 hover:text-black"
+              className="size-8 rounded-full text-showcase-muted hover:bg-muted hover:text-showcase-title"
               aria-label="View next component"
               disabled={isLastItem}
               onClick={showNextItem}
@@ -142,7 +142,7 @@ export function Showcase() {
         </div>
       </div>
 
-      <div className="flex h-[460px] items-start justify-center rounded-[32px] bg-[#f8f8f6] px-4 pt-10 shadow-[0_18px_70px_rgba(0,0,0,0.05)] sm:px-8 sm:pt-12">
+      <div className="flex h-[460px] items-start justify-center rounded-[32px] bg-showcase-panel px-4 pt-10 shadow-[0_18px_70px_rgba(0,0,0,0.05)] sm:px-8 sm:pt-12">
         {activeItem.component}
       </div>
     </section>

@@ -26,6 +26,10 @@ const buttonVariants = cva(
           "border-[#E6DA42] bg-[#FFF24A] text-[#171717] hover:bg-[#FFF066]",
         "noise-ghost":
           "border-transparent bg-transparent text-white/80 hover:bg-white/8 hover:text-white",
+        "trigger-primary":
+          "border-transparent bg-[linear-gradient(180deg,#6d33ff_0%,#5b26ef_100%)] text-white shadow-[0_10px_24px_rgba(91,38,239,0.45),inset_0_1px_0_rgba(255,255,255,0.15)] hover:brightness-105",
+        "trigger-toolbar":
+          "border-transparent bg-transparent text-trigger-toolbar-foreground hover:bg-white/4 hover:text-white",
       },
       size: {
         default:
@@ -39,6 +43,8 @@ const buttonVariants = cva(
         "icon-lg": "size-8 [&_svg:not([class*='size-'])]:size-4",
         "noise-action": "h-auto rounded-[10px] px-3.5 py-2 text-[0.82rem]",
         "noise-icon": "size-auto rounded-full p-1",
+        "trigger-primary": "h-auto gap-2.5 rounded-[16px] px-4 py-3.5 text-[0.96rem]",
+        "trigger-toolbar": "h-auto gap-2.5 px-4 py-5 text-[0.92rem]",
       },
     },
     defaultVariants: {
