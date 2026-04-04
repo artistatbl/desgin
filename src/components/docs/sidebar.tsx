@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-import { componentGroups, sectionLinks, showcaseItems } from "./data"
+import { sectionLinks, showcaseItems } from "./data"
 
 type SidebarProps = {
   activeIndex: number
@@ -54,19 +54,6 @@ export function Sidebar({
               >
                 {item.label}
               </Button>
-            ))}
-          </div>
-        </div>
-
-        <div className="space-y-3">
-          <p className="text-[0.74rem] font-medium tracking-[0.2em] text-showcase-muted uppercase">
-            Library
-          </p>
-          <div className="space-y-1">
-            {componentGroups.map((item) => (
-              <div key={item} className="rounded-md px-3 py-1.5 text-sm text-muted-foreground">
-                {item}
-              </div>
             ))}
           </div>
         </div>
