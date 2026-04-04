@@ -148,8 +148,8 @@ export function Main({
   isLastItem,
 }: MainProps) {
   return (
-    <main className="h-full min-w-0 overflow-y-auto overflow-x-hidden py-6 lg:px-8 xl:px-10">
-      <div className="mx-auto flex min-h-full w-full max-w-[780px] flex-col pb-10">
+    <main className="h-full min-w-0 overflow-y-auto overflow-x-hidden py-6">
+      <div className="mx-auto flex min-h-full w-full max-w-[780px] flex-col px-4 pb-10 lg:px-8 xl:px-10">
         <div className="space-y-4">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div className="max-w-[540px] space-y-2">
