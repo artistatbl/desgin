@@ -110,15 +110,17 @@ function CodeLine({ line }: { line: string }) {
 
 function CodeBlock({ lines }: { lines: string[] }) {
   return (
-    <div className="space-y-1 font-mono text-[0.78rem] text-muted-foreground sm:text-[0.82rem]">
-      {lines.map((line, index) => (
-        <div key={`${index}-${line}`} className="grid grid-cols-[20px_minmax(0,1fr)] gap-3">
-          <span className="text-muted-foreground/60">{index + 1}</span>
-          <code className="min-w-0 whitespace-pre-wrap break-all">
-            <CodeLine line={line} />
-          </code>
-        </div>
-      ))}
+    <div className="overflow-x-auto">
+      <div className="min-w-max space-y-1 font-mono text-[0.78rem] text-muted-foreground sm:text-[0.82rem]">
+        {lines.map((line, index) => (
+          <div key={`${index}-${line}`} className="grid min-w-max grid-cols-[20px_minmax(0,1fr)] gap-3">
+            <span className="text-muted-foreground/60">{index + 1}</span>
+            <code className="whitespace-pre">
+              <CodeLine line={line} />
+            </code>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
@@ -208,7 +210,7 @@ export function Showcase() {
 
   return (
     <section className="h-full overflow-y-auto bg-background text-foreground">
-      <div className="mx-auto flex min-h-full w-full max-w-5xl flex-col px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto flex min-h-full w-full max-w-6xl flex-col px-4 py-8 sm:px-6 lg:px-8">
         <div className="border-b border-border pb-6">
           <p className="text-[0.72rem] font-medium tracking-[0.22em] text-muted-foreground uppercase">
             UI Showcase
@@ -268,7 +270,7 @@ export function Showcase() {
           </div>
         </div>
 
-        <div className="grid gap-6 py-8 lg:grid-cols-[minmax(0,1fr)_320px]">
+        <div className="grid gap-6 py-8 lg:grid-cols-[minmax(0,1fr)_360px] xl:grid-cols-[minmax(0,1fr)_400px]">
           <Panel title="Preview" label={activeItem.sourcePath}>
             <div
               className={cn(
