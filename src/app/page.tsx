@@ -2,7 +2,7 @@ import { Showcase } from "@/components/showcase"
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="fixed inset-0 overflow-hidden bg-background">
       <Showcase />
     </main>
   )
