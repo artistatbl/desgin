@@ -14,19 +14,17 @@ export type ShowcaseItem = {
   exportName: string
   importPath: string
   previewClassName?: string
-  sections: string[]
 }
 
 export const showcaseItems: [ShowcaseItem, ...ShowcaseItem[]] = [
   {
     id: "trigger-action",
     label: "Trigger Action",
-    note: "Automation trigger card with a glowing state bar and compact action row.",
+    note: "Automation trigger card with a compact state bar and action row.",
     component: <Trigger />,
     exportName: "Trigger",
     importPath: "@/components/trigger",
-    previewClassName: "bg-showcase-panel",
-    sections: ["Preview", "Installation", "Usage"],
+    previewClassName: "bg-muted/20",
   },
   {
     id: "threshold-noise",
@@ -35,8 +33,7 @@ export const showcaseItems: [ShowcaseItem, ...ShowcaseItem[]] = [
     component: <Threshold />,
     exportName: "Threshold",
     importPath: "@/components/threshold",
-    previewClassName: "bg-showcase-panel",
-    sections: ["Preview", "Installation", "Usage"],
+    previewClassName: "bg-muted/20",
   },
   {
     id: "battery-status",
@@ -45,65 +42,37 @@ export const showcaseItems: [ShowcaseItem, ...ShowcaseItem[]] = [
     component: <Battery />,
     exportName: "Battery",
     importPath: "@/components/battery",
-    previewClassName: "bg-showcase-panel",
-    sections: ["Preview", "Installation", "Usage"],
+    previewClassName: "bg-muted/20",
   },
   {
-    id: "memories-black-sea",
+    id: "black-sea",
     label: "Black Sea",
-    note: "Poster-style travel memory card with warm cinematic scenery.",
+    note: "Poster-style travel memory card with cinematic scenery.",
     component: <BlackSea />,
     exportName: "BlackSea",
     importPath: "@/components/blacksea",
-    previewClassName: "bg-showcase-panel",
-    sections: ["Preview", "Installation", "Usage"],
+    previewClassName: "bg-muted/20",
   },
   {
     id: "xcode-assistant",
     label: "Xcode Assistant",
-    note: "Rounded assistant composer with action icons and a floating send button.",
+    note: "Rounded assistant composer with compact actions.",
     component: <Xcode />,
     exportName: "Xcode",
     importPath: "@/components/xcode",
-    previewClassName: "bg-showcase-panel",
-    sections: ["Preview", "Installation", "Usage"],
+    previewClassName: "bg-muted/20",
   },
 ]
 
-export const topNavigation = [
-  "Docs",
-  "Components",
-  "Blocks",
-  "Charts",
-  "Directory",
-  "Create",
-] as const
+export const installPackages = ["pnpm", "npm", "yarn", "bun"] as const
 
-export const sectionLinks = [
-  "Introduction",
-  "Components",
-  "Installation",
-  "Theming",
-  "CLI",
-  "Registry",
-] as const
+export function getInstallCommand() {
+  return "bun add @base-ui/react class-variance-authority clsx tailwind-merge"
+}
 
-export const componentGroups = [
-  "Accordion",
-  "Alert",
-  "Avatar",
-  "Badge",
-  "Button",
-  "Card",
-  "Carousel",
-  "Chart",
-] as const
-
-export function getPreviewSnippet(item: ShowcaseItem) {
+export function getImportSnippet(item: ShowcaseItem) {
   return [
-    "import {",
-    `  ${item.exportName},`,
-    `} from "${item.importPath}"`,
+    `import { ${item.exportName} } from "${item.importPath}"`,
   ]
 }
 
@@ -115,8 +84,4 @@ export function getUsageSnippet(item: ShowcaseItem) {
     `  return <${item.exportName} />`,
     "}",
   ]
-}
-
-export function getInstallCommand() {
-  return "bun add @base-ui/react class-variance-authority clsx tailwind-merge"
 }
